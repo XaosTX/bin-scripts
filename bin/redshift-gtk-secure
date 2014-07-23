@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Get security credentials for use in script
+. ~/.secure/location.secure
+LATITUDE=$SECURE_LATITUDE
+LONGITUDE=$SECURE_LONGITUDE
+
+REDSHIFT=/usr/bin/redshift-gtk
+
+DAY=6500K
+NIGHT=4500K
+
+$REDSHIFT -l $LATITUDE:$LONGITUDE -t $DAY:$NIGHT
+
