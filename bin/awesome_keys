@@ -1,0 +1,8 @@
+#!/bin/sh
+# Script which parses rc.lua file for AwesomeWM
+#   and formats and displays all key bindings
+
+RC_LUA=~/.config/awesome/config/keys.lua 
+
+grep awful.key $RC_LUA | sed -e's/^\s*//; s/awful.key({//; s/},/\t/; s/function.\?(.\?)//; s/end),//; s/\s*),//; s/",\s*/"\t/; s/--\s*/--/'
+

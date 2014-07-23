@@ -1,0 +1,27 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "No arguments supplied"
+fi
+
+REPO=$1
+
+# Get security credentials for use in script
+. ~/.secure/github.secure
+GIT_USER=$SECURE_GIT_USER
+GIT_TOKEN=$SECURE_GIT_TOKEN
+
+REMOTE=git@github.com:$GIT_USER/$REPO.git
+
+echo "Deleting myrepos configuration..."
+rm ~/.config/mr/available.d/$REPO.vcsh
+rm ~/.config/mr/config.d/$REPO.vcsh
+
+echo "Deleting vcsh configuration..."
+rm -rf ~/.config/vcsh/repo.d/$REPO.git
+
+echo "Deleting .gitignore.d configuration..."
+rm ~/.gitignore.d/$REPO
+
+echo "Deleting repository at $REMOTE"
+curl -X DELETE -H "Authorization: token $GIT_TOKEN" https://api.github.com/repos/$GIT_USER/$REPO
+

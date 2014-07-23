@@ -1,0 +1,9 @@
+*
+!/bin
+!/bin/awesome_keys
+!/bin/awesome_test
+!/bin/vcsh_add
+!/bin/vcsh_remove
+!/bin/vcsh_setup
+!/.gitignore.d
+!/.gitignore.d/bin-scripts

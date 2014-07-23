@@ -1,0 +1,25 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "No arguments supplied"
+fi
+
+REPO=$1
+
+echo "Enter space-separated list of files and directories to add to repository: $REPO"
+echo "    (e.g. .vimrc .vim)"
+read -re -p 'Files/Directories to add to repository: ' -i ".$REPO.conf .$REPO" GIT_FILES
+vcsh $REPO add $GIT_FILES
+
+echo "Creating .gitignore for repository: $REPO"
+vcsh write-gitignore $REPO
+vcsh $REPO add -f .gitignore.d/$REPO
+vcsh write-gitignore $REPO
+vcsh $REPO add .gitignore.d/$REPO
+
+echo "Commiting changes to repository: $REPO"
+read -re -p 'Commit comment: ' -i "Added $GIT_FILES" GIT_COMMENT
+vcsh $REPO commit -m "$GIT_COMMENT"
+
+echo .
+echo "Don't forget to 'mr push' to send changes to remote repository."
+echo .
