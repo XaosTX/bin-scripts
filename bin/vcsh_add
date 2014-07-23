@@ -5,11 +5,13 @@ if [ $# -eq 0 ]; then
 fi
 
 REPO=$1
+shift
+GIT_FILES=$*
 
 echo "Enter space-separated list of files and directories to add to repository: $REPO"
 echo "    (e.g. .vimrc .vim)"
-read -re -p 'Files/Directories to add to repository: ' -i ".$REPO.conf .$REPO" GIT_FILES
-vcsh $REPO add $GIT_FILES
+read -re -p 'Files/Directories to add to repository: ' -i "$GIT_FILES" GIT_FILES
+vcsh $REPO add -f $GIT_FILES
 
 echo "Creating .gitignore for repository: $REPO"
 vcsh write-gitignore $REPO
