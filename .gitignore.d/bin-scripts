@@ -3,6 +3,7 @@
 !/bin/awesome_keys
 !/bin/awesome_test
 !/bin/redshift-gtk-secure
+!/bin/tmux_attach
 !/bin/vcsh_add
 !/bin/vcsh_remove
 !/bin/vcsh_setup
