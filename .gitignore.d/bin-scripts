@@ -3,7 +3,7 @@
 !/bin/awesome_keys
 !/bin/redshift-gtk-secure
 !/bin/tmux-attach
-!/bin/vcsh_add
+!/bin/vcsh-add
 !/bin/vcsh_remove
 !/bin/vcsh_setup
 !/.gitignore.d
